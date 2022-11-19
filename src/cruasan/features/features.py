@@ -1,16 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
+def gen_dummy(data, columns):
+    return pd.get_dummies(data, columns=columns, drop_first=True)
 
-# In[ ]:
-
-
-import pandas as pd
-
-def gen_dummy(df: pd.DataFrame, cols: list):
-    dummies_df = pd.get_dummies(df, columns=cols)
-    return dummies_df
-
-def gen_bin(df: pd.DataFrame, cols: list):
-    binary_df = pd.get_dummies(df, columns=cols)
-    return dummies_df
+def gen_bin(data, columns):
+    return pd.get_dummies(data, columns=columns, drop_first=True)
 

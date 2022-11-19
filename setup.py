@@ -7,10 +7,12 @@ base_dir = os.path.dirname(__file__)
 src_dir = os.path.join(base_dir, 'src')
 sys.path.insert(0, src_dir)
 
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
 def get_requirements(requirements_path='requirements.txt'):
     with open(requirements_path) as fp:
         return [x.strip() for x in fp.read().split('\n') if not x.startswith('#')]
-
 setuptools.setup(
     name='cruasan',
     version='0.1',
