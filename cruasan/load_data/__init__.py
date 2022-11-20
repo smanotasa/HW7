@@ -1,1 +1,0 @@
-from cruasan.load_data import load_data

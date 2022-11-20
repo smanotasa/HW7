@@ -1,21 +1,15 @@
-import pandas as pd
+from sklearn.linear_model import LogisticRegression
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-import warnings
-warnings.filterwarnings('ignore')
 
-def train_model(df: pd.DataFrame, X, y):
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=2, stratify=y)
-    rf_clf = RandomForestClassifier(n_estimators=500, random_state=10)
-    rf_clf.fit(X_train, y_train)
-    
-    y_train_predicted = rf_clf.predict(X_train)
-    y_train_pred_proba = np.max(rf_clf.predict_proba(X_train), axis=1)
-    X_train['train_pred'] = y_train_predicted
-    
-    y_test_predicted = rf_clf.predict(X_test)
-    y_test_pred_proba = np.max(rf_clf.predict_proba(X_test), axis=1)
-    X_test['test_pred'] = y_test_predicted
-    
-    return(y_train, y_test, y_train_pred_proba, y_test_pred_proba)
+
+model = LogisticRegression()
+
+def train_model(x, y):
+    model.fit(x, y)
+    return x, y
+
+
+def pred(train, test):
+    train_pred = train['predictions'] = np.squeeze(model.predict_proba(train)[:, 1])
+    test_pred = test['predictions'] = np.squeeze(model.predict_proba(test)[:, 1])
+    return train, test, train_pred, test_pred
