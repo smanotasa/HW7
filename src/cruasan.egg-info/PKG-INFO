@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: cruasan
+Version: 0.1
+Summary: Library for CDS HW5
+Home-page: 
+Author: Catalina Odizzio, Agostina Pissinis, Santiago Manotas-Arroyave
+License: MIT
+Classifier: Programming Language :: Python :: 3.9.12
+License-File: LICENSE.txt

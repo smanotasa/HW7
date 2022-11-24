@@ -2,6 +2,6 @@ conda create --name darrylenv_hw5 env python=3.9.12
 
 conda activate darrylenv_hw5
 
-pip install jupyter pandas
+pip install jupyter pandas numpy
 
 pip install -U scikit-learn
