@@ -30,7 +30,7 @@ def car_at_light(light):
 # If there is any other reason why it fails show the problem 
 
 def safe_subtract(a,b):
-  if type(a)==float or type(a)==int and type (b)==float or type(b)==int:
+  if (type(a)==float or type(a)==int) and (type (b)==float or type(b)==int):
     return a-b 
   else: return str("None")
 
