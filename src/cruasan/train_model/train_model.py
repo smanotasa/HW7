@@ -4,9 +4,7 @@ import numpy as np
 model = LogisticRegression()
 
 def train_model(x, y):
-    model.fit(x, y)
-    return x, y
-
+    return model.fit(x, y)
 
 def pred(train, test):
     train_pred = train['predictions'] = np.squeeze(model.predict_proba(train)[:, 1])
