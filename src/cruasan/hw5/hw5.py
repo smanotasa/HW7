@@ -30,7 +30,7 @@ def car_at_light(light):
 # If there is any other reason why it fails show the problem 
 
 def safe_subtract(a,b):
-  if type(a)==float or type(a)==int and type (b)==float or type(b)==int:
+  if (type(a)==float or type(a)==int) and (type (b)==float or type(b)==int):
     return a-b 
   else: return str("None")
 
@@ -60,10 +60,12 @@ def retrieve_age_eafp(dict):
 # making sure to use to handle the fact 
 # that it might not exist. 
 
-def read_data(file):
+import pandas as pd
+
+def read_data(path):
   try:
-    csvreader = csv.reader(file)
-  except NameError:
+    return pd.read_csv(path)
+  except FileNotFoundError:
     print('There is no such file')
 
 # 5) Squash some bugs! 
@@ -117,12 +119,13 @@ print(productory)
 # ["Simba and Nala are lions.", "I laugh in the face of danger.",
 #  "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."] 
 
+from functools import reduce
 
-list=[]
-def count_simba(x):
-  return str(x).count('Simba')
-
-print(sum(map(lambda x: count_simba(x), list)))
+def count_simba(stringlist):
+    def sub_count(string):
+        return string.count("Simba")
+    simbacounter = reduce(lambda a, b: a+b, map(sub_count, stringlist))
+    return(simbacounter)
 
 # 7)
 # Create a function called "get_day_month_year" that takes 
@@ -152,12 +155,11 @@ def get_day_month_year(dates: list):
 # example input: [((41.23,23.5), (41.5, 23.4)), ((52.38, 20.1),(52.3, 17.8))]
 # HINT: You can use geopy.distance in order to compute the distance
 
-from geopy.distance import geodesic as GD
+from geopy.distance import distance
 
-def compute_distance(a,b): 
-  return round(GD(a,b).km,2)
-
-print(list(map(compute_distance, ((41.23,23.5), (41.5, 23.4)), ((52.38, 20.1),(52.3, 17.8)))))
+def compute_distance(point_tuple):
+    point_distances = list(map(lambda pair: distance(pair[0], pair[1]), point_tuple))
+    return(point_distances)
 
 # 9)
 # Consider a list that each element can be an integer or
